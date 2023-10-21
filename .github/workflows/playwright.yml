@@ -1,16 +1,16 @@
 name: Playwright github action e2e test
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 jobs:
   PlaywrightTest:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checks out the source code from the $github.repository repository
+    - name: Checks out the source code from the main repository
       uses: actions/checkout@v3
 
     - name: Sets up the Node.js environment
@@ -27,9 +27,15 @@ jobs:
     - name: Run Playwright tests
       run: npx playwright test
 
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+    - name: Show pass fali number
+      run: |
+        FILE_PATH=test-result.txt
+        if [ -f "$FILE_PATH" ]; then
+          # Read the contents of the file
+          DATA=$(cat "$FILE_PATH")
+          echo "Content of data.txt: $DATA"
+        else
+          echo "File not found: $FILE_PATH"
+          exit 1
+        fi
+      
