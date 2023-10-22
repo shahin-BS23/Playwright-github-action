@@ -44,8 +44,10 @@ jobs:
       with:
         server_address: smtp-relay.brevo.com
         server_port: 587
-        username: Shahin.Shanaous@brainstation-23.com
-        password: LZOhrwJFRxdEtj6k
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        from: Shahin.Shanaous@brainstation-23.com
+        to: mshanaousrabby01@gmail.com
         subject: GitHub Action Notification
         body: |
           The GitHub Actions workflow has completed successfully.
