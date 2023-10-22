@@ -28,7 +28,6 @@ jobs:
       run: npx playwright test
 
     - name: Show pass fali number
-      id: read-content
       run: |
         FILE_PATH=test-result.txt
         if [ -f "$FILE_PATH" ]; then
@@ -39,6 +38,10 @@ jobs:
           echo "File not found: $FILE_PATH"
           exit 1
         fi
+
+    - name: Read content from text file
+      id: read-content
+      run: echo "::set-output name=file-content::$(cat test-result.txt)"  
     
     - name: Send email notification
       uses: dawidd6/action-send-mail@v2
@@ -51,9 +54,8 @@ jobs:
         to: mshanaousrabby01@gmail.com
         subject: GitHub Action Notification
         body: |
-          The GitHub Actions workflow has completed successfully.
-          The test result id:
-            ${{ steps.read-content.outputs.DATA }}
+          The GitHub Actions workflow has completed successfully.The test result is: 
+          ${{ steps.read-content.outputs.file-content }}
   
           Commit SHA: ${{ github.sha }}
           Commit Message: ${{ github.event.head_commit.message }}
