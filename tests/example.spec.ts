@@ -18,13 +18,5 @@ test.describe('Test for github action',async () => {
     console.log(page.locator('#shopping_cart_container'));
 
     expect(page.locator('.shopping_cart_link')).toBeVisible();
-  })
-
-  test.skip('Skip the test',async () => {
-    
-  })
-
-  test('I am going to fail',async () => {
-    test.fail();
-  })
+  });
 })
