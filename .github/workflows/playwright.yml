@@ -38,4 +38,21 @@ jobs:
           echo "File not found: $FILE_PATH"
           exit 1
         fi
-      
+    
+    - name: Send email notification
+      uses: dawidd6/action-send-mail@v2
+      with:
+        server_address: smtp-relay.brevo.com
+        server_port: 587
+        username: Shahin.Shanaous@brainstation-23.com
+        password: LZOhrwJFRxdEtj6k
+        subject: GitHub Action Notification
+        body: |
+          The GitHub Actions workflow has completed successfully.
+  
+          Commit SHA: ${{ github.sha }}
+          Commit Message: ${{ github.event.head_commit.message }}
+            
+    env:
+      TZ: 'UTC'
+  

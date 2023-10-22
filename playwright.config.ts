@@ -21,7 +21,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['@skilbourn/playwright-report-summary', {outputFile: 'test-result.txt'}],
+    ['playwright-custom-json-summary-report', {open:'never', outputFolder:'playwright-report/'}],
+    ['@skilbourn/playwright-report-summary', {open:'never',outputFile: 'test-result.txt'}],
     ['html',{open: 'never', outputFolder:'playwright-report/'}],
     ['list']
   ],

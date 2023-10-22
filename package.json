@@ -11,5 +11,8 @@
     "@playwright/test": "^1.39.0",
     "@skilbourn/playwright-report-summary": "^1.1.1",
     "@types/node": "^20.8.6"
+  },
+  "dependencies": {
+    "playwright-custom-json-summary-report": "^2.2.0"
   }
 }
