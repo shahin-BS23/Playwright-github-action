@@ -28,6 +28,7 @@ jobs:
       run: npx playwright test
 
     - name: Show pass fali number
+      id: read-content
       run: |
         FILE_PATH=test-result.txt
         if [ -f "$FILE_PATH" ]; then
@@ -51,6 +52,8 @@ jobs:
         subject: GitHub Action Notification
         body: |
           The GitHub Actions workflow has completed successfully.
+          The test result id:
+            ${{ steps.read-content.outputs.DATA }}
   
           Commit SHA: ${{ github.sha }}
           Commit Message: ${{ github.event.head_commit.message }}
