@@ -54,9 +54,11 @@ jobs:
         to: mshanaousrabby01@gmail.com
         subject: GitHub Action Notification
         body: |
-          The GitHub Actions workflow has completed successfully.The test result is: 
-          ${{ steps.read-content.outputs.file-content }}
-  
+          The GitHub Actions workflow has completed successfully.
+
+          Content from Text File:
+            ${{ steps.read-content.outputs.file-content }}
+          
           Commit SHA: ${{ github.sha }}
           Commit Message: ${{ github.event.head_commit.message }}
             
