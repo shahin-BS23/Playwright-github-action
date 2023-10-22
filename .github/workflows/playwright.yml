@@ -41,7 +41,7 @@ jobs:
 
     - name: Read content from text file
       id: read-content
-      run: echo "name=file-content::$(cat test-result.txt)" >> $GITHUB_OUTPUT  
+      run: echo "::set-output name=file-content::$(<test-result.txt)"
     
     - name: Send email notification
       uses: dawidd6/action-send-mail@v2
