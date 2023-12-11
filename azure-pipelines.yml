@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: PlaywrightTest
+  timeoutInMinutes: 60
+  displayName: 'Playwright Test'
+  steps:
+  - checkout: self
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18'
+      checkLatest: true
+      displayName: 'Setup Node.js environment'
+
+  - script: |
+      npm ci
+    displayName: 'Install dependencies'
+
+  - script: |
+      npx playwright install --with-deps
+    displayName: 'Install Playwright Browsers'
+
+  - script: |
+      npx playwright test
+    displayName: 'Run Playwright tests'
